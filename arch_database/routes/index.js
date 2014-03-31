@@ -30,3 +30,31 @@ exports.residential = function(req, res){
 exports.redirect = function(req, res){
   res.render('redirect', { title: 'Express' });
 };
+
+exports.faq = function(req, res){
+  res.render('faq', { title: 'Express' });
+};
+
+exports.gallery = function(req, res){
+  res.render('gallery', { title: 'Express' });
+};
+
+exports.parallaxing = function(req, res){
+  res.render('parallaxing', { title: 'Express' });
+};
+
+exports.model = function(req, res){
+  res.render('model', { title: 'Express' });
+};
+
+exports.report = function(req, res){
+  res.render('report', { title: 'Express' });
+};
+
+exports.resources = function(req, res){
+  res.render('resources', { title: 'Express' });
+};
+
+exports.upload = function(req, res){
+  res.render('upload', { title: 'Express' });
+};
