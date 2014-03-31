@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  lang="en-GB" xml:lang="en-GB">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Blueprints Database</title>
+		<style type="text/css" media="screen">
+			@import url('css/styles.css');
+		</style>
+		<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+		 <script src="js/betterinnerhtml.js" type="text/javascript"></script>
+		<!--<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>-->
+		<script type='text/javascript' src='js/main_jquery.js'></script>
+		<link rel="icon" type="image/png" href="http://www.iconpng.com/png/stickers/database.png" />
+	</head>
+
+	<body>
+		<div id='header'>
+		</div>
+
+		<div id="content">
+			<div id="report">
+				<a id="home_button_report" href="home.html"><img id="home_image" src="images/home_icon.svg" alt=""/></a>
+				<h1>Report ad1444</h1>
+
+				<h2>Introduction</h2>
+
+				<p>The aim of this report is to present the steps of creating a website with respect to the HTML5 standard plus the XHTML polyglot conventions.</p>
+		  
+				<p>The first assignment of the unit consisted of creating website using the following technologies: HTML, CSS, Javascript, GIMP, Inkscape and other suitable technologies.
+
+				My main theme of the website is architecture and how people with no architecture skills can share ideas. For this reason I thought that a website that allows uploading and reviewing blueprints would be beneficial.</p>
+
+				<h2>HTML</h2>
+				<p>
+				The website structure is conventional, an Intro page that allows the user to access the Home page. From here the user can see different categories of projects, upload his own project or see the contact details.</p>
+
+				<p>Other pages created are the image gallery, for showing the work done in Inkscape and GIMP, the Parallaxing page, the Report page and the resources page which shows the different sources of inspiration, tutorials and original images.Each page is divided in 4 sections: header, navigation bar, content and footer. Sometimes, the navigation bar is included in the content (example: Home Page).</p> 
+
+				<p>Because the HTML code must be dynamic (allow an unknown number of projects to be shown with different attributes), most of the HTML code in the projects pages was generated using Javascript.</p>
+			
+				<h2>CSS</h2>
+				<p>I have used some features of CSS3 such as gradients for the navigation bar. The majority of the elements dimension are given in percentage to make the webpage scale nicely. Some restrictions apply on a couple of element, for example the upload box from the upload page is limited to minimum 400px.</p>
+
+				<p>The footer is created using 3 columns that have floating properties. All the space between the elements of the web pages, all the fonts and all the colours are coded using CSS.</p>
+
+				<p>In addition to this, I have used Bootstrap to create the project panels from each category of buildings and the CSS transformation effects to create the scaling effect of the three images from the home page. With the ‘display:none’ property I hided the elements and shown them later with JQuery, also applying effects.</p>
+
+				<p>'filter:alpha(opacity=40);' doesn't pass the w3c validator, but it fixes the IE problem, so I decided to keep it. Also, the Bootstrap library doesn't validate.
+				</p>
+
+				<h2>Javascript</h2>
+				<p>As stated previous, javascript was used to generate HTML code as well as adding animations to the website, making use of the Jquery library.
+
+				All the pages display different elements gradually as the ‘fadeIn()’ option was used. Other transition effect were used in the navigation bar. On the Index page page, there exists an flying element that gets placed in his normal spot. JQuery was also used to resize the elements as the width or the height of the browser window changes.
+				</p>
+
+				<p>The main libraries used were the Zoom feature and WebGL, both of them which I had to modify to fit my requirements and to be pass the XHTML standards. There is only one script that generates all of the project pages. I have done this by reading the page name and generating the right output (text, images) depending on what kind of page the user viewing (commercial, education, residential).</p>
+
+				<h4>Parallaxing</h4>
+				<p>The parallaxing page demonstrates how this page type can be implemented, but I haven't spent much time on adjusting the images and the speed to fit perfectly. The technique is based on the tutorial created by <a href="http://blog.fraser-hart.co.uk/jquery-parallax-scrolling/">Fraser Hart</a></p>
+
+				<h2>Inkscape</h2>
+				<p>Because of the nature of my website the only place where I could use svg images are the icons. I searched the web for icons and I tried to reproduce them, using mostly the Draq Bezier Curves tool, Edit path by nodes tool, Fill tool and modifying different properties of the curves:</p>
+
+				<ul>
+				<li><img src="images/home_icon.svg" alt=""/></li>
+				<li><img src="images/phone.svg" alt=""/></li>
+				<li><img src="images/email.svg" alt=""/></li>
+				</ul>
+
+				<p>I have also created a gallery with further examples, in each pair the first one being my work and the second one the original. The Powerpuff Girls image was done by creating different shapes and filling them up as well as bringing them up to the front at the right time.</p>
+				
+				<h2>GIMP, Photoshop</h2>
+				<p>For this stage I thought that it will be best to try both programs. For this reason I have chosen to modify or create the same image twice, with GIMP and also with Photoshop and keep the best looking one from the two resulting images. I found out that both have a very large number of tools, but I preferred GIMP for working with layers, image cropping and text and Photoshop for creating buttons as the Blending Options are easy to use. For example the image from the <a href="redirect.html">redirect page</a> was created in GIMP using different layers with different transparency, while the blue "View 3D model" button from the Project pages was created very simple in Photoshop, using different beveling options.
+
+				The photoshop tutorials came in handy also for the games project. One example is The generals image where I used filters and text effects to modify the original image.</p>
+
+				<h2>Issues</h2>
+				
+				<ul>
+					<li>JQuery problem<br/>
+
+					The biggest problem with JQuery is that the library uses ‘innerHTML’ when dealing with image related transformations (ex. Zoom feature), which is not an XHTML standard. For this reason, one of the biggest time-consuming actions was to fix the library to use ‘BetterInnerHTML’ instead. </li>
+
+					<li>WebGL<br/>
+
+					Another issue is the displaying of a WebGL frame with seems to not work properly with node.js. I couldn't fix this problem, but the website shows the 3D models if the server is replaced with a local Python one. A demo is also available <a href="http://ad1444.eu5.org/model.html?name=residential_model0">here</a>.
+
+					The objects were converted into Autodesk Maya in .obj files then using a script into .js files.
+					The scrolling and moving of the objects is a little weird because the centroid of the object was not modified.<br/>
+
+					<img src="images/screenshots/webgl.png" alt="" id="image_report"/> </li>
+
+					<li>Image map<br/>
+
+					For the About page I thought of inserting an image map for the user to click on different parts of the image displayed as background, but I realised that the size of the screen can change and so the size of the background image so the image map wouldn’t fit the original image. </li>
+
+					</ul>
+			
+				<h2>Conclusion</h2>
+				<p>For this website I always kept in mind that it must be linked to a back-end. This is why I tried to make everything as back-end friendly as possible.
+
+				All the files were checked via the w3c validator and some css files didn’t passed because of the external libraries (Bootstrap) or because some tricks to fix IE are not standard, but except that I fixed all the problems that arose and even gone furthermore into merging BetterInnerHTML with the JQuery library.</p>
+				<h2>Resources</h2>
+				<p>All the material that were used in this assignment can be found <a href="resources.html">here</a>.</p>
+
+				<p>An online version of the website can be found <a href="http://www.ad1444.eu5.org">here</a>.</p>
+
+
+			</div>
+		</div>
+
+		<!--footer start-->
+		<div id='footer'>
+			<div id="column_left">
+				<h3>Links</h3>				
+				<a href="gallery.html">Gallery</a><br/>
+				<a href="parallaxing.html">Parallaxing</a><br/>
+				<a href="report.html">Report</a><br/>
+				<a href="resources.html">Resources</a><br/>
+			</div>
+			<div id="column_middle">
+				<h3>See also...</h3>
+				<a href="http://www.facebook.com"><img class="icon" src="http://www.cnib.ca/en/about/PublishingImages/Facebook.png" alt=""/>Facebook</a><br/>
+				<a href="http://www.linkedin.com"><img class="icon" src="http://www.apse.org/images/li.png" alt=""/>LinkedIn</a><br/>
+			</div>
+			<div id="column_right">
+				<h3>Contact</h3>
+				<img class="icon" src="images/email.svg" alt=""/> example@example.com<br/>
+				<img class="icon" src="images/phone.svg" alt=""/> +44 0769 698 790<br/>
+			</div>
+		</div>
+		<div id="copyright">
+			Copyright &#169; 2014 Alexandru Dumitrescu
+		</div> 
+		<!--footer end-->
+	</body>
+</html>

@@ -1,0 +1,11 @@
+#content {
+  background-image:url('../images/glass.png');
+  background-size:100% 100%;
+  width: 65%;
+  left: 22.5%;
+  right: 22.5%;
+  margin:0px auto;
+  min-width: 700px;
+  padding-bottom: 4%;
+  height: 100% ;
+}

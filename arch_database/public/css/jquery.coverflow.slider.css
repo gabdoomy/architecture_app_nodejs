@@ -1,0 +1,91 @@
+/*MUSIC AREA STYLES*/
+.coverFlow{
+	/*SET THE WIDTH OF THE VIEWABLE AREA HERE*/
+	width: 970px; 
+	padding-top: 15px;
+	overflow: hidden; 
+	white-space: nowrap;
+}
+	.coverFlow ul{
+		/*SET THE HEIGHT OF THE VIEWABLE AREA HERE*/
+		height: 220px; 
+		
+		list-style: none; 
+		padding: 0; 
+		margin: 0; 
+	}
+		.coverFlow ul li{
+			/*SET THE WIDTH OF YOUR INDIVIDUAL SLIDES HERE.
+			You can also add padding or borders or any styling to the items to control the appearance*/
+			width:194px; 
+			box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			-o-box-sizing:border-box;
+			-ms-box-sizing:border-box;
+			display: block; 
+			float: left; 
+			margin: 0; 
+			vertical-align: top; 
+			text-align: center; 
+			white-space: normal; 
+			padding: 0;
+			transition:5s all ease-out;
+			-moz-transition:5s all ease-out;
+			text-align: center;
+			height: 194px;
+		}
+		
+/*NEXT/PREV BUTTON STYLES*/
+.coverFlowNav{
+	height: 18px; 
+	width: 11px; 
+	background: url(../images/nav.png); 
+	position: absolute; 
+	left: -18px; 
+	top:100px; 
+	z-index: 9; 
+	cursor: pointer;
+}
+.coverFlowNav.next{
+	background-position: -10px 0; 
+	left: auto; 
+	right: -18px;
+}
+
+.coverFlow ul li{
+	
+}
+
+.coverFlow ul li img{
+	height: 160px;
+	width: 160px;
+	margin-top: 15px;
+	box-shadow: 0 0 5px rgba(0,0,0,.5);
+}
+	.coverFlow ul li.selected img{
+		height: 220px;
+		width: 220px;
+		z-index: 9;
+		position: relative;
+		margin-top: -15px;
+		margin-left: -15px;
+		border: 2px solid #3796d2;
+		box-shadow: 0 0 15px rgba(0,0,0,.5);
+	}
+
+/*STYLES SPECIFIC TO THE DEMO IMPLEMENTATION - NOT REQUIRED*/
+body{
+	text-align: center;
+}
+.wrapper
+{
+	width:970px;
+	margin: 0 auto;
+}
+
+h1{
+	width: 20%;
+	margin: 50px auto 50px auto;
+	font-size: 30px;
+}

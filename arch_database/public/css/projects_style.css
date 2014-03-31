@@ -1,0 +1,41 @@
+#content {
+	padding: 2% 2% 2% 2%;
+}
+
+#projects {
+}
+
+.project{
+	padding-top: 10px;
+}
+
+.project_info {
+	margin: 1% 1% 1% 1%;
+}
+
+.project_date {
+	padding: 0% 0% 2% 2%;
+}
+
+
+nav {
+	padding-top: 0;
+}
+
+h1{
+	font-family:"Times New Roman", Times, serif !important;
+	padding: 0 0  2% 5%;
+}
+
+#button_3d{
+	float:right;
+	padding: 2% 0 0 0;
+}
+
+#price{
+	font-family: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-size: 24px;
+	color: blue; 
+	float:right;
+	padding:2% 0 0 0;
+}
