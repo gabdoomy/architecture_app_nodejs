@@ -42,6 +42,15 @@ app.get('/home.html', routes.home);
 app.get('/redirect.html', routes.redirect);
 app.get('/about.html', routes.about);
 app.get('/commercial.html', routes.commercial);
+app.get('/educational.html', routes.educational);
+app.get('/residential.html', routes.residential);
+app.get('/faq.html', routes.faq);
+app.get('/gallery.html', routes.gallery);
+app.get('/parallaxing.html', routes.parallaxing);
+app.get('/model.html', routes.model);
+app.get('/report.html', routes.report);
+app.get('/resources.html', routes.resources);
+app.get('/upload.html', routes.upload);
 
 app.get('/users', user.list);
 
