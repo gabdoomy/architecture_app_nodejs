@@ -42,12 +42,25 @@
 						</ul>
 					</li>
 					<li><a href="about.html">About</a></li>
+					<%if (login ) { %>
+					<li><a href="logout">Log Out</a>
+						<ul>
+							<li><a href="profile">Profile</a></li>
+						</ul>
+					<%  } else { %>
+					<li><a href="login">Sign In</a>
+						<ul>
+							<li><a href="signup">Sign Up</a>
+							<li><a href="profile">Profile</a></li>
+						</ul>
+					<% } %>
+					</li>
 				</ul>
 			</nav>
 
 			<div class="box">
 				<h1>Project Uploader</h1>
-				<form method="POST" enctype="multipart/form-data">
+				<form action="/upload_file" method="POST" enctype="multipart/form-data">
 				<input class="styled-button-11" type="file" name="file" />
 				<input type="submit" class="styled-button-11" value="Send the CV!" />
 				<input style="display:none" type="text" name="dest" value="shared" />

@@ -1,10 +1,9 @@
-
 /**
  * Module dependencies.
  */
 var flash    = require('connect-flash');
 var express = require('express');
-var routes = require('./routes');
+var routes = require('./routes/routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
@@ -54,41 +53,10 @@ app.configure(function() {
 });
 //end authentification-------------------------------------------------------
 
-require('./app/routes.js')(app, passport);
-app.get('/', routes.index);
-app.get('/redirect.html', routes.redirect);
-app.get('/home.html', showSignIn, routes.home);
-app.get('/about.html', routes.about);
-app.get('/commercial.html',isLoggedIn, routes.commercial);
-app.get('/educational.html', routes.educational);
-app.get('/residential.html', routes.residential);
-app.get('/faq.html', routes.faq);
-app.get('/gallery.html', routes.gallery);
-app.get('/parallaxing.html', routes.parallaxing);
-app.get('/model.html', routes.model);
-app.get('/report.html', routes.report);
-app.get('/resources.html', routes.resources);
-app.get('/upload.html', routes.upload);
-app.get('/profile', isLoggedIn, routes.profile);
-app.get('/login', routes.login);
-app.get('/signup', routes.signup);
-app.get('/logout', routes.logout);
-
+require('./app/post.js')(app, passport);
+require('./app/get.js')(routes, app);
+require('./app/upload.js')(app);
 app.get('/users', user.list);
-
-// route middleware to make sure
-function isLoggedIn(req, res, next) {
-  // if user is authenticated in the session, carry on
-  if (req.isAuthenticated()) 
-    return next();
-  // if they aren't redirect them to the home page
-  res.redirect('/login');
-}
-
-function showSignIn(req, res, next){
-  res.locals.login = req.isAuthenticated();
-  next();
-}
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
