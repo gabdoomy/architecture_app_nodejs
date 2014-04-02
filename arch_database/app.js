@@ -23,6 +23,29 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var fs = require("fs");
+var file = "db/projects.db";
+var exists = fs.existsSync(file);
+
+if(!exists) {
+  console.log("Creating DB file.");
+  fs.openSync(file, "w");
+}
+
+var sqlite3 = require("sqlite3").verbose();
+var db = new sqlite3.Database(file);
+
+db.serialize(function() {
+if(!exists) {
+  db.run("CREATE TABLE Projects(Name varchar(50),URL varchar(100), Category int(1));");
+  db.run("INSERT INTO Projects VALUES ('project_test1','url_test1','1');");
+}
+});
+
+db.close();
+
+
+
 // //authentification---------------------------------------------------------
 mongoose.connect(configDB.url); // connect to our database
 
@@ -55,7 +78,7 @@ app.configure(function() {
 
 require('./app/post.js')(app, passport);
 require('./app/get.js')(routes, app);
-require('./app/upload.js')(app);
+require('./app/upload.js')(app, db);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
