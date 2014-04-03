@@ -42,7 +42,10 @@ if(!exists) {
 }
 });
 
-db.close();
+//db.run("INSERT INTO Projects VALUES ('project_test2','url_test2','0');");
+//db.run("INSERT INTO Projects VALUES ('project_test3','url_test3','2');");
+
+
 
 
 

@@ -4,9 +4,11 @@ module.exports = function(app, db) {
 
 	app.post('/upload_file', function(req, res) {
 
-  db.each("SELECT Name, URL, Category FROM Projects", function(err, row) {
-    console.log("here");
-    //console.log(row.Name, row.URL, row.Category);
+  var result = db.run("SELECT Name, URL, Category FROM Projects");
+  console.log(result);
+
+   db.each("SELECT Name, URL, Category FROM Projects", function(err, row) {
+      console.log(row.Name+" - "+row.URL+" - "+row.Category);
   });
 
 	fs.readFile(req.files.file.path, function (err, data) {
