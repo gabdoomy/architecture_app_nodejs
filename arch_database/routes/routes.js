@@ -1,7 +1,6 @@
-
-/*
- * GET home page.
- */
+var file = "db/projects.db";
+var sqlite3 = require("sqlite3").verbose();
+var db = new sqlite3.Database(file);
 
 exports.index = function(req, res){
   res.render('index.ejs', { title: 'Express' });
@@ -16,7 +15,7 @@ exports.about = function(req, res){
 };
 
 exports.commercial = function(req, res){
-  res.render('commercial.ejs', { title: 'Express' , user : req.user});
+  res.render('commercial.ejs', { title: 'Express' , user : req.user, database : db});
 };
 
 exports.educational = function(req, res){

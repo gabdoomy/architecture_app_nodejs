@@ -42,6 +42,8 @@ if(!exists) {
 }
 });
 
+db.close();
+
 //db.run("INSERT INTO Projects VALUES ('project_test2','url_test2','0');");
 //db.run("INSERT INTO Projects VALUES ('project_test3','url_test3','2');");
 
@@ -81,7 +83,7 @@ app.configure(function() {
 
 require('./app/post.js')(app, passport);
 require('./app/get.js')(routes, app);
-require('./app/upload.js')(app, db);
+require('./app/upload.js')(app);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){

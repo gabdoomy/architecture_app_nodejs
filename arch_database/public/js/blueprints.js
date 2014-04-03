@@ -1,6 +1,14 @@
  function showImg(){
  	var pagename =document.location.href.match(/[^\/]+$/)[0].split(".")[0];
 	var images =new Array();
+
+	$.getJSON("/query?category=2", function( data ) {  	console.log("h-"+data);
+  	$.each(data, function(name, d_name){
+  		console.log(d_name);
+  		//console.log(d_name.Name);
+  	});
+	});
+	console.log("here");
 	images[0]=0;
 	images[1]=1;
 	
