@@ -70,6 +70,10 @@ exports.signup = function(req, res) {
   res.render('signup.ejs', { message: req.flash('signupMessage') });
 };
 
+exports.feedback = function(req, res) {
+  res.render('feedback.ejs', { user : req.user });
+};
+
 exports.logout = function(req, res) {
   req.logout();
   res.redirect('/home.html');

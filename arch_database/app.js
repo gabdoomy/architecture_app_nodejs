@@ -10,7 +10,36 @@ var path = require('path');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
+var fs = require('fs');
+var https = require('https');
+// security SSL  -------------------------------------------------------------
+
+// var opts = {
+   
+//   // Specify the key file for the server
+//   key: fs.readFileSync('ssl/server/keys/server.key'),
+   
+//   // Specify the certificate file
+//   cert: fs.readFileSync('ssl/server/certificates/client.crt'),
+   
+//   // Specify the Certificate Authority certificate
+//   ca: fs.readFileSync('ssl/ca/ca.crt'),
+   
+//   // This is where the magic happens in Node.  All previous
+//   // steps simply setup SSL (except the CA).  By requesting
+//   // the client provide a certificate, we are essentially
+//   // authenticating the user.
+//   requestCert: true,
+   
+//   // If specified as "true", no unauthenticated traffic
+//   // will make it to the route specified.
+//   rejectUnauthorized: false,
+//   passphrase: "password"
+// };
+
 var app = express();
+
+//-----------------------------------------------------------------------------
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -19,9 +48,14 @@ app.engine('.html', require('ejs').__express);
 //app.set('view engine', 'html');
 
 // development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+app.configure('development', function(){
+  app.use(express.errorHandler(
+    { dumpExceptions: true, showStack: true })); 
+});
+ 
+app.configure('production', function(){
+  app.use(express.errorHandler()); 
+});
 
 var fs = require("fs");
 var file = "db/projects.db";
@@ -46,9 +80,6 @@ db.close();
 
 //db.run("INSERT INTO Projects VALUES ('project_test2','url_test2','0');");
 //db.run("INSERT INTO Projects VALUES ('project_test3','url_test3','2');");
-
-
-
 
 
 // //authentification---------------------------------------------------------
@@ -86,6 +117,46 @@ require('./app/get.js')(routes, app);
 require('./app/upload.js')(app);
 app.get('/users', user.list);
 
+// app.get('/test', function(req, res){
+ 
+//   // AUTHORIZED 
+//   if(req.client.authorized){
+ 
+//     var subject = req.connection
+//       .getPeerCertificate().subject;
+     
+//     // Render the authorized template, providing
+//     // the user information found on the certificate
+//     res.render('authorized', 
+//       { title:        'Authorized!',
+//      user:         subject.CN,
+//      email:        subject.emailAddress,
+//      organization: subject.O,
+//      unit:         subject.OU,
+//      location:     subject.L,
+//      state:        subject.ST,
+//      country:      subject.C
+//    }); 
+  
+//   // NOT AUTHORIZED
+//   } else {
+  
+//  // Render the unauthorized template.
+//     res.render('unauthorized', 
+//   { title: 'Unauthorized!' }); 
+//   }
+// });
+
+// https.createServer(opts, function (req, res) {
+//     if (req.client.authorized) {
+//         res.writeHead(200, {"Content-Type": "application/json"});
+//         res.end('{"status":"approved"}');
+//     } else {
+//         res.writeHead(401, v);
+//         res.end('{"status":"denied"}');
+//     }
+// }).listen(443);
+
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + app.get('port')+ ' in '+app.settings.env);
 });

@@ -243,6 +243,17 @@ a:hover{
   text-align: center;
 }
 
+.row{
+  margin-top:5%;
+  margin-left:30%;
+  margin-right:30%;
+  margin-bottom:3%;
+  width:40%;
+  height: 50%;
+  min-width: 400px;
+  text-align: center;
+}
+
 .styled-button-11 {
   background:#0033FF;
   background:-moz-linear-gradient(#66CCFF 0%,#0033FF 100%);
@@ -254,6 +265,8 @@ a:hover{
  /* filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#66CCFF',endColorstr='#0033FF',GradientType=0);
   */
   padding:8px 18px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   color:#fff;
   font-family:'Helvetica Neue',sans-serif;
   font-size:16px;
@@ -291,6 +304,10 @@ a:hover{
 #image_report {
   width: 300px;
   margin: 2% 0% 2% 0%;
+}
+
+h1 {
+  margin-top: 5%;
 }
 
 /*.zoom{

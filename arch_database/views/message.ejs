@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  lang="en-GB" xml:lang="en-GB">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Blueprints Database</title>
+		<style type="text/css" media="screen">
+			@import url('css/styles.css');
+		</style>
+		<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+		 <script src="js/betterinnerhtml.js" type="text/javascript"></script>
+		<!--<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>-->
+		<script type='text/javascript' src='js/main_jquery.js'></script>
+		<link rel="icon" type="image/png" href="http://www.iconpng.com/png/stickers/database.png" />
+	</head>
+
+	<body>
+		<div id='header'>
+		</div>
+
+		<div id="content">
+				<nav>
+				<ul>
+					<li><a id="home_button" href="home.html"><img id="home_image" src="images/home_icon.svg" alt=""/></a></li>
+					<li><a href="#">Projects</a>
+						<ul>
+							<li><a href="commercial.html">Commercial buildings</a></li>
+							<li><a href="residential.html">Residential buildings</a></li>
+							<li><a href="educational.html">Educational buildings</a></li>
+						</ul>
+					</li>
+					<li><a href="upload.html">Upload</a>
+						<ul>
+							<li><a href="#">Upload Project</a></li>
+							<li><a href="faq.html">FAQ</a></li>
+						</ul>
+					</li>
+					<li><a href="about.html">About</a></li>
+					<%if (login) { %>
+					<li><a href="logout">Log Out</a>
+						<ul>
+							<li><a href="profile">Profile</a></li>
+						</ul>
+					<%  } else { %>
+					<li><a href="login">Sign In</a>
+						<ul>
+							<li><a href="signup">Sign Up</a>
+							<li><a href="profile">Profile</a></li>
+						</ul>
+					<% } %>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="box">
+				<%if (status=="success" ) { %>
+					<h2>Email sent!</h2>
+				<% } else { %>
+				<%if (status=="projectsucces" ) { %>
+					<h2>Project sent!</h2>
+				<%  } else { %>
+					<h2>Something went wrong!</h2>
+				<% } }%>
+			</div>
+
+		
+		</div>
+
+		<!--footer start-->
+		<div id='footer'>
+			<div id="column_left">
+				<h3>Links</h3>				
+				<a href="gallery.html">Gallery</a><br/>
+				<a href="parallaxing.html">Parallaxing</a><br/>
+				<a href="report.html">Report</a><br/>
+				<a href="resources.html">Resources</a><br/>
+			</div>
+			<div id="column_middle">
+				<h3>See also...</h3>
+				<a href="http://www.facebook.com"><img class="icon" src="http://www.cnib.ca/en/about/PublishingImages/Facebook.png" alt=""/>Facebook</a><br/>
+				<a href="http://www.linkedin.com"><img class="icon" src="http://www.apse.org/images/li.png" alt=""/>LinkedIn</a><br/>
+			</div>
+			<div id="column_right">
+				<h3>Contact</h3>
+				<img class="icon" src="images/email.svg" alt=""/> example@example.com<br/>
+				<img class="icon" src="images/phone.svg" alt=""/> +44 0769 698 790<br/>
+			</div>
+		</div>
+		<div id="copyright">
+			Copyright &#169; 2014 Alexandru Dumitrescu
+		</div> 
+		<!--footer end-->
+	</body>
+</html>

@@ -1,5 +1,5 @@
 // app/routes.js
-url = require('url');
+var url = require('url');
 module.exports = function(routes, app) {
 
   app.get('/', routes.index);
@@ -20,7 +20,9 @@ module.exports = function(routes, app) {
   app.get('/login', routes.login);
   app.get('/signup', routes.signup);
   app.get('/logout', routes.logout);
-  app.get('/query', query);
+  app.get('/feedback.html',isLoggedIn, routes.feedback);
+  app.get('/message.html',isLoggedIn, message);
+  app.get('/query',isLoggedIn, query);
 
   function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on
@@ -37,6 +39,10 @@ module.exports = function(routes, app) {
     next();
   }
 
+  function message(req, res) {
+    res.render('message.ejs', { user : req.user , status : req.param("status")});
+  }
+  
   function query(req, res) {
     var file = "db/projects.db";
     var sqlite3 = require("sqlite3").verbose();
@@ -46,12 +52,13 @@ module.exports = function(routes, app) {
     res.writeHead(200, {'Content-Type': 'application/json'});
     //res.writeHeader(200, {'Content-Type': 'text/html'});
     var firstItem=true;
+    if(req.param("category")!="1"&&req.param("category")!="2"&&req.param("category")!="3"&&req.param("category")!="undefined") throw "SQL Injection attempted" +req.param("category");
     db.each("SELECT * FROM Projects WHERE Category= "+req.param("category")+";", function(err, row) {
       //res.json({ q_result: row.Name});
       res.write(firstItem ? (firstItem=false,'[') : ',');
       res.write( JSON.stringify({ User: row.user, Name: row.Name , Date: row.Date, URL: row.URL, Category: row.Category, Price: row.Price, Contact: row.Contact, Info: row.Info, Levels:row.Levels}));
       //res.write("<h1>test</h1>");
-      console.log(JSON.stringify({ Name: row.Name }));
+      //console.log(JSON.stringify({ Name: row.Name }));
     }, function(){
         db.close();
         res.end(']');
