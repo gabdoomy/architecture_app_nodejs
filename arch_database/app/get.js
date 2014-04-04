@@ -49,7 +49,7 @@ module.exports = function(routes, app) {
     db.each("SELECT * FROM Projects WHERE Category= "+req.param("category")+";", function(err, row) {
       //res.json({ q_result: row.Name});
       res.write(firstItem ? (firstItem=false,'[') : ',');
-      res.write( JSON.stringify({ Name: row.Name }));
+      res.write( JSON.stringify({ User: row.user, Name: row.Name , Date: row.Date, URL: row.URL, Category: row.Category, Price: row.Price, Contact: row.Contact, Info: row.Info, Levels:row.Levels}));
       //res.write("<h1>test</h1>");
       console.log(JSON.stringify({ Name: row.Name }));
     }, function(){

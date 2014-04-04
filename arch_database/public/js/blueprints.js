@@ -2,7 +2,11 @@
  	var pagename =document.location.href.match(/[^\/]+$/)[0].split(".")[0];
 	var images =new Array();
 
-	$.getJSON("/query?category=2", function( data ) {  	console.log("h-"+data);
+	var category = 4;
+	if(pagename.localeCompare("commercial")==0) category=1;
+	else if(pagename.localeCompare("residential")==0) category=2;
+	else if(pagename.localeCompare("educational")==0) category=3;
+	$.getJSON("/query?category="+category, function( data ) {  	console.log("h-"+data);
   	$.each(data, function(name, d_name){
   		console.log(d_name);
   		//console.log(d_name.Name);
