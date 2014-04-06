@@ -57,26 +57,28 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
-var fs = require("fs");
-var file = "db/projects.db";
-var exists = fs.existsSync(file);
+// var fs = require("fs");
+// var file = "db/Projects_web.db";
+// var exists = fs.existsSync(file);
 
-if(!exists) {
-  console.log("Creating DB file.");
-  fs.openSync(file, "w");
-}
+// if(!exists) {
+//   console.log("Creating DB file.");
+//   fs.openSync(file, "w");
+// }
 
-var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database(file);
+// var sqlite3 = require("sqlite3").verbose();
+// var db = new sqlite3.Database(file);
 
-db.serialize(function() {
-if(!exists) {
-  db.run("CREATE TABLE Projects(User varchar(50), Date datetime, Name varchar(50),URL varchar(100), Category int(1), Price int(10), Contact varchar(200), Info varchar(500), Levels int(1) );");
-  db.run("INSERT INTO Projects VALUES ('user1','2014-04-03 14:02:18','project_test1','url_test1','10', '450', 'contact1', 'info1', '100' );");
-}
-});
+// db.serialize(function() {
+// if(!exists) {
+//    //db.run("CREATE TABLE Persons(User varchar(20),Password varchar(20));");
 
-db.close();
+//   db.run("CREATE TABLE Projects(User varchar(50), Date datetime, Name varchar(50),URL varchar(100), Category int(1), Price int(10), Contact varchar(200), Info varchar(500), Levels int(5), Model varchar(100));");
+//   db.run("INSERT INTO Projects VALUES ('user1','2014-04-03 14:02:18','project_test1','url_test1','10', '450', 'contact1', 'info1', '100', 'no');");
+// }
+// });
+
+//db.close();
 
 //db.run("INSERT INTO Projects VALUES ('project_test2','url_test2','0');");
 //db.run("INSERT INTO Projects VALUES ('project_test3','url_test3','2');");

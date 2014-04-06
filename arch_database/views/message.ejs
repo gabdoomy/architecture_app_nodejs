@@ -61,10 +61,13 @@
 					<h2>Project sent!</h2>
         <% } else { %>
         <%if (status=="projectnotfound" ) { %>
-          <h2>Please upload project blueprint!</h2>
+          <h2>Please upload the project blueprint!</h2>
+				<%  } else { %>
+				<%if (status=="projectfailname" ) { %>
+          <h2>Please type a project name!</h2>
 				<%  } else { %>
 					<h2>Something went wrong!</h2>
-				<% } } }%>
+				<% } } } }%>
 			</div>
 
 		

@@ -1,5 +1,6 @@
 // app/routes.js
 var url = require('url');
+var fs = require('fs');
 module.exports = function(routes, app) {
 
   app.get('/', routes.index);
@@ -44,7 +45,14 @@ module.exports = function(routes, app) {
   }
   
   function query(req, res) {
-    var file = "db/projects.db";
+    
+    var file = "db/Projects_web.db";
+    var exists = fs.existsSync(file);
+
+    if(!exists) {
+      console.log("Creating DB file. get");
+      fs.openSync(file, "w");
+    } 
     var sqlite3 = require("sqlite3").verbose();
     var db = new sqlite3.Database(file);
     var url_parts = url.parse(req.url,true);
@@ -56,7 +64,25 @@ module.exports = function(routes, app) {
     db.each("SELECT * FROM Projects WHERE Category= "+req.param("category")+";", function(err, row) {
       //res.json({ q_result: row.Name});
       res.write(firstItem ? (firstItem=false,'[') : ',');
-      res.write( JSON.stringify({ User: row.user, Name: row.Name , Date: row.Date, URL: row.URL, Category: row.Category, Price: row.Price, Contact: row.Contact, Info: row.Info, Levels:row.Levels}));
+      var user = row.User;
+      if(user=='') user = 'N/A';
+      var name = row.Name;
+      if(name=='') name = 'N/A';
+      var date = row.Date;
+      if(date=='') date = 'N/A';
+      var url = row.URL;
+      if(url=='') url = 'N/A';
+      var category = row.Category;
+      if(category =='') category = 'N/A';
+      var price = row.Price;
+      if(price=='') price = 'N/A';
+      var contact = row.Contact;
+      if(contact=='') contact = 'N/A';
+      var info = row.Info;
+      if(info=='') info = 'N/A';
+      var levels = row.Levels;
+      if(levels=='') levels = 'N/A';
+      res.write( JSON.stringify({ User: user, Name: name , Date: date, URL:url, Category:category, Price:price, Contact: contact, Info: info, Levels: levels, Model: row.Model}));
       //res.write("<h1>test</h1>");
       //console.log(JSON.stringify({ Name: row.Name }));
     }, function(){

@@ -28,39 +28,50 @@ module.exports = function(app, passport) {
            pass: "coursework"
        }
     });
-
-    smtpTransport.sendMail({
-       from: req.body.feedback_name+" <"+req.body.feedback_email+">", // sender address
-       to: "admin <webtechcw2@gmail.com>", // comma separated list of receivers
-       subject: req.body.feedback_subject, // Subject line
-       text: req.body.feedback_comment // plaintext body
-    }, function(error, response){
-       if(error){
-           console.log(error);
-       }else{
-           console.log("Message sent: " + response.message);
-       }
-      });
-
-    smtpTransport.sendMail({
-       to: req.body.feedback_name+" <"+req.body.feedback_email+">",
-       from: "Webtech CW2 <ad1444@bristol.ac.uk>", 
-       subject: "Feedback received - "+req.body.feedback_subject, // Subject line
-       text: "Feedback received: \n\n\""+req.body.feedback_comment+"\"\n\nThank you!" // plaintext body
-    }, function(error, response){
-        if(error){
-          res.writeHead(302, {
+    var ok = "no";
+    if(req.body.feedback_email.lastIndexOf('@')<req.body.feedback_email.lastIndexOf('.')) ok = "yes";
+    console.log(ok);
+    if(req.body.feedback_name==""||req.body.feedback_subject==""||req.body.feedback_comment==""||ok=="no") {
+       res.writeHead(302, {
             'Location': '/message.html?status=fail'
           });
           res.end();
-          console.log(error);
-        } else {
+    } else {
+
+      smtpTransport.sendMail({
+         from: req.body.feedback_name+" <"+req.body.feedback_email+">", // sender address
+         to: "admin <webtechcw2@gmail.com>", // comma separated list of receivers
+         subject: req.body.feedback_subject, // Subject line
+         text: req.body.feedback_comment // plaintext body
+      }, function(error, response){
+         if(error){
+             console.log(error);
+         }else{
+             console.log("Message sent: " + response.message);
+         }
+        });
+
+      smtpTransport.sendMail({
+         to: req.body.feedback_name+" <"+req.body.feedback_email+">",
+         from: "Webtech CW2 <ad1444@bristol.ac.uk>", 
+         subject: "Feedback received - "+req.body.feedback_subject, // Subject line
+         text: "Feedback received: \n\n\""+req.body.feedback_comment+"\"\n\nThank you!" // plaintext body
+      }, function(error, response){
+          if(error){
             res.writeHead(302, {
-             'Location': '/message.html?status=success'
+              'Location': '/message.html?status=fail'
             });
             res.end();
-            console.log("Message sent: " + response.message);
-          }
-      });
-  });
+            console.log(error);
+          } else {
+              res.writeHead(302, {
+               'Location': '/message.html?status=success'
+              });
+              res.end();
+              console.log("Message sent: " + response.message);
+            }
+        });
+      }
+    });
+
 };
