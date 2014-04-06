@@ -16,8 +16,8 @@ module.exports = function(app, passport) {
   }));
 
   app.post('/feedback', function(req, res) {
-    console.log(req.body.feedback_email);
-    console.log(req.body.feedback_comment);
+    //console.log(req.body.feedback_email);
+    //console.log(req.body.feedback_comment);
 
     var nodemailer = require("nodemailer");
 

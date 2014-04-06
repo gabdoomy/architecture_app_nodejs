@@ -31,11 +31,12 @@
 					</li>
 					<li><a href="upload.html">Upload</a>
 						<ul>
-							<li><a href="#">Upload Project</a></li>
+							<li><a href="upload.html">Upload Project</a></li>
 							<li><a href="faq.html">FAQ</a></li>
 						</ul>
 					</li>
 					<li><a href="about.html">About</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
 					<%if (login) { %>
 					<li><a href="logout">Log Out</a>
 						<ul>
@@ -58,9 +59,12 @@
 				<% } else { %>
 				<%if (status=="projectsucces" ) { %>
 					<h2>Project sent!</h2>
+        <% } else { %>
+        <%if (status=="projectnotfound" ) { %>
+          <h2>Please upload project blueprint!</h2>
 				<%  } else { %>
 					<h2>Something went wrong!</h2>
-				<% } }%>
+				<% } } }%>
 			</div>
 
 		
