@@ -12,37 +12,19 @@ var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 var fs = require('fs');
 var https = require('https');
-// security SSL  -------------------------------------------------------------
 
-// var opts = {
-   
-//   // Specify the key file for the server
-//   key: fs.readFileSync('ssl/server/keys/server.key'),
-   
-//   // Specify the certificate file
-//   cert: fs.readFileSync('ssl/server/certificates/client.crt'),
-   
-//   // Specify the Certificate Authority certificate
-//   ca: fs.readFileSync('ssl/ca/ca.crt'),
-   
-//   // This is where the magic happens in Node.  All previous
-//   // steps simply setup SSL (except the CA).  By requesting
-//   // the client provide a certificate, we are essentially
-//   // authenticating the user.
-//   requestCert: true,
-   
-//   // If specified as "true", no unauthenticated traffic
-//   // will make it to the route specified.
-//   rejectUnauthorized: false,
-//   passphrase: "password"
-// };
-
+var protocol = "http";
 var app = express();
 
 //-----------------------------------------------------------------------------
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+if (protocol == 'https') {
+  app.set('port', process.env.PORT || 443);
+}
+else if (protocol == 'http') {
+  app.set('port', process.env.PORT || 3000);
+}
 app.set('views', __dirname + '/views');
 app.engine('.html', require('ejs').__express);
 //app.set('view engine', 'html');
@@ -159,6 +141,19 @@ app.get('/users', user.list);
 //     }
 // }).listen(443);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port')+ ' in '+app.settings.env);
-});
+if (protocol == 'https') {
+  var options = { // security SSL  -------------------------------------------------------------
+    key: fs.readFileSync('ssl/server/keys/server.key'),
+    cert: fs.readFileSync('ssl/server/certificates/user.crt'),
+    ca: fs.readFileSync('ssl/ca/ca.crt'),
+    passphrase: 'ad1444'
+  };
+  https.createServer(options,app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port')+ ' in '+app.settings.env);
+  });
+}
+else if (protocol == 'http') {
+  http.createServer(app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port')+ ' in '+app.settings.env);
+  });
+}
