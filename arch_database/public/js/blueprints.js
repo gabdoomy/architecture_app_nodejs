@@ -32,7 +32,10 @@
 			var $price=$("<div id=\"price\">Price: &#163;"+d_name.Price+"</div><br/>");
 			$price.appendTo( "#imageinsert"+i );
 			
-			var $image=$("<a href=\"model.html?name="+pagename+"_model"+i+"\"><img id=\"button_3d\" src=\"./images/button_3d.png\" alt=\"\" name=\"name\" value=\"treehouse_logo\"/></a>");
+			var $image=$("");
+			if(d_name.Model!="no") {
+				$image=$("<a href=\"model.html?name="+pagename+"_model"+i+"\"><img id=\"button_3d\" src=\"./images/button_3d.png\" alt=\"\" name=\"name\" value=\"treehouse_logo\"/></a>");
+			}
 			$image.appendTo( "#imageinsert"+i );
 			
 			var $text=$("<div>Project Name: "+d_name.Name+"</div>"+
