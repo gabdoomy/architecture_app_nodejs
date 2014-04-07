@@ -25,7 +25,78 @@
 
 				<h1>Server Report</h1>
 
-				
+				<h2>Introduction</h2>
+
+					<p>The back-end of the website was created using Node.js v0.10.25, express v3.5.1, sqlite v3.7.16.2 and npm v1.3.24.</p>
+					<p>Other modules include nodemod, passport, passport-local, connect-flash, jade, nodemailer, stylus, bcrypt_nodejs, ejs and mongoose.</p>
+					<p>The server is integrated with the website created in the previous coursework. For this coursework I also had to develop furthermore the front-end, but I didn't pay much attention and didn't spent much time on it as my focus was on the server side.</p>
+					<p>The http server runs on port 3000.</p>
+
+
+					<h2>Setup</h2>
+
+					In order to create a basic server, I opted for the Node.js - Express combination. I have converted all the html files into the ejs format and wrote the get methods for all the pages. I have divided my main methods get and post into separate js files. At this stage I had the basic server running using the nodemod module which restarts the server if any changes occur.
+
+					<h2>Login</h2>
+
+					<p>The first option that had to be implemented was the login. In order to do this, I did a little bit of researching and I found out that the passport based login is the prefered and the most used option because it is so simple to implement.	</p>
+
+					<p>The server is connected to a database which stores the users and passwords. In this case, I chose MongoDB as my database because I thought that storing sensible information like this on my server was bad, especially because I didn’t want to focus on security as the information on the website itself is not very important. Moreover, I am sure that their level of security is quite high.</p>
+
+					<p>My server makes the connection to the external database, updating it if a new user creates an account and creates a user session when he logs in, forwarding the username to the ejs templates.</p>
+
+					<p>Some pages don’t require authentication, while some do, like the project pages, uploading a project, etc. Every time an user makes a get request, a middleware implemented checks if the user is logged in, if not, he is redirected to the login page. </p>
+
+					<p>Example of user already registered:<br/>
+					username: alex@test.com<br/>
+					password: ad1444<br/></p>
+
+					<p>MongoDB login credentials:<br/>
+					<a href="https://mongolab.com/login/?r=%2Fdatabases%2Fusers#users">https://mongolab.com/login</a><br/>
+					username: ad1444@my.bristol.ac.uk<br/>
+					password: ad1444<br/></p>
+
+					<h2>Uploading projects</h2>
+
+					<p>The biggest challenge of this coursework was of course uploading projects on the server. For this step, I chose to use a file based database like sqlite3 stored on the server.</p>
+
+					<p>As the user uploads the project on the website, the server check if all the required fields are completed and if the extensions of the uploaded files are correct. After the files are uploaded, the database is changed and the right information is inserted.</p>
+
+					<p>The image types supported are .png, .jpg and .jpeg. Switching the enctype on the form to multipart made the text to correctly render as the UTF-8 characters.</p>
+					<p>The data is transferred from the back-end to the front-end via the JSON format.</p>
+
+
+					<h2>Showing the projects. Dynamic pages</h2>
+
+					<p>Another big challenge was to generate the right project pages with all the correct information. All the information needed is stored in the local sqlite3 database, which contains data about what each user has uploaded, when and what data he didn’t want to insert.</p>
+
+					<p>Generating the web pages without a clear structure was pretty as they are composed of multiple projects shown one under the other. The server checks how many projects are in the specified category, sends the information to the front-end which fills up the required empty spaces as the links for the images, project information and it also creates a blue button if a 3D model of the project was uploaded. Once pressed the button, if the model is a valid three.js format then a 3D model should be available.</p>
+
+					
+					<h2>Feedback</h2>
+
+					<p>I thought it is a good idea to have a feedback form. I made all the fields required and when the feedback is send, there are two emails sent, one to the admin email, in this case ‘user: "webtechcw2@gmail.com", password: "coursework"’ and one to the email filled in the form.</p>
+
+					<p>The email feature used the Gmail SMTP, which limits the maximum emails sent per day to 99 emails.</p>
+
+					<h2>Security. SQL Injection</h2>
+
+					<p>My main focus was not on the security part of the server, but I did however dealt with the SQL injection problem, not escaping the malware code, but by checking if the input is the correct one. Also, on the feedback page, there are some checks for empty fields and if the format of the email address is correct.
+					</p>
+					
+					<p>I also tried to implement the SSL encryption, but I couldn’t produce a valid pair of certificates. If the right certificates are provided, I am óptimist that the https protocol will work.</p>
+
+					<h2>Conclusion</h2>
+
+					<p>Following this assignment I am positive that I know how to create a Node.js server, adding as features the following: login feature, email notification, file uploader on the server, connection to both external and internal database as well as creating front-end - back-end connections.</p>
+
+
+
+
+								
+
+				<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
 
 				<h1>Client Report</h1>
 

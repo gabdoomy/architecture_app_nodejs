@@ -49,15 +49,15 @@ module.exports = function(app) {
             var newPath ="";
             var newPathModel="";
             if(req.body.project_category==1) {
-              newPath= "./public/images/blueprints/blueprint_commercial_"+count+".png";
+              newPath= "./public/images/blueprints/blueprint_commercial_"+count+getExtension(req.files.file.path);
               newPathModel = "./public/models/commercial_model"+count+".js";
             }
             else if(req.body.project_category==2) {
-              newPath= "./public/images/blueprints/blueprint_residential_"+count+".png";
+              newPath= "./public/images/blueprints/blueprint_residential_"+count+getExtension(req.files.file.path);
               newPathModel = "./public/models/residential_model"+count+".js";
             }
             else if(req.body.project_category==3) {
-              newPath= "./public/images/blueprints/blueprint_educational_"+count+".png";
+              newPath= "./public/images/blueprints/blueprint_educational_"+count+getExtension(req.files.file.path);
               newPathModel = "./public/models/educational_model"+count+".js";
             }
             fs.writeFile(newPath, data, function (err) {
@@ -89,7 +89,7 @@ module.exports = function(app) {
             }
             else newPathModel ='no';
             var datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-            db.run("INSERT INTO Projects VALUES ('"+req.user.local.email+"', '"+datetime+"', '"+req.body.project_name+"','"+newPath+"', '"+req.body.project_category+"', '"+req.body.project_price+"', '"+req.body.contact+"', '"+req.body.project_info+"', '"+req.body.project_levels+"', '"+newPathModel+"')");
+            db.run("INSERT INTO Projects VALUES ('"+req.user.local.email+"', '"+datetime+"', '"+req.body.project_name+"','"+getExtension(req.files.file.path)+"', '"+newPath+"', '"+req.body.project_category+"', '"+req.body.project_price+"', '"+req.body.contact+"', '"+req.body.project_info+"', '"+req.body.project_levels+"', '"+newPathModel+"')");
             res.writeHead(302, {
               'Location': '/message.html?status=projectsucces'
             });

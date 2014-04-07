@@ -13,8 +13,8 @@ db.serialize(function() {
 if(!exists) {
    //db.run("CREATE TABLE Persons(User varchar(20),Password varchar(20));");
 
-  db.run("CREATE TABLE Projects(User varchar(50), Date datetime, Name varchar(50),URL varchar(100), Category int(1), Price int(10), Contact varchar(200), Info varchar(500), Levels int(5), Model varchar(100));");
-  db.run("INSERT INTO Projects VALUES ('user1','2014-04-03 14:02:18','project_test1','url_test1','10', '450', 'contact1', 'info1', '100', 'no');");
+  db.run("CREATE TABLE Projects(User varchar(50), Date datetime, Name varchar(50), Extension varchar(10) , URL varchar(100), Category int(1), Price int(10), Contact varchar(200), Info varchar(500), Levels int(5), Model varchar(100));");
+  db.run("INSERT INTO Projects VALUES ('user1','2014-04-03 14:02:18','project_test1','.png','url_test1','10', '450', 'contact1', 'info1', '100', 'no');");
 }
 });
 

@@ -31,7 +31,7 @@
 					</li>
 					<li><a href="upload.html">Upload</a>
 						<ul>
-							<li><a href="#">Upload Project</a></li>
+							<li><a href="upload.html">Upload Project</a></li>
 							<li><a href="faq.html">FAQ</a></li>
 						</ul>
 					</li>
@@ -55,12 +55,12 @@
 
 			<div class="box">
 				<h1>Feedback Form</h1>
-				<form action="/feedback" method="POST" enctype="multipart/form-data">
-				Name*: <input type="text" name="feedback_name"></br>
-				Email*: <input type="text" name="feedback_email"></br>
-				Subject*: <input type="text" name="feedback_subject"></br>
-				Comment*: <input type="text" name="feedback_comment"></br>
-				<input type="submit" class="styled-button-11" value="Send the feedback!" /></br>
+				<form id="contact-form2" action="/feedback" method="POST" enctype="multipart/form-data">
+				<label><span class="text-form">Name*: </span><input type="text" name="feedback_name"></label><br/>
+				<label><span class="text-form">Email*: </span><input type="text" name="feedback_email"></label><br/>
+				<label><span class="text-form">Subject*: </span><input type="text" name="feedback_subject"></label><br/>
+				<label><span class="text-form">Comment*: </span><input  type="text" name="feedback_comment"></label><br/>
+				<input type="submit" class="styled-button-11" value="Send the feedback!" /><br/>
 				*required
 				<input style="display:none" type="text" name="dest" value="shared" />
 				</form>

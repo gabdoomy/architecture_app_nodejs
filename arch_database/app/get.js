@@ -82,7 +82,7 @@ module.exports = function(routes, app) {
       if(info=='') info = 'N/A';
       var levels = row.Levels;
       if(levels=='') levels = 'N/A';
-      res.write( JSON.stringify({ User: user, Name: name , Date: date, URL:url, Category:category, Price:price, Contact: contact, Info: info, Levels: levels, Model: row.Model}));
+      res.write( JSON.stringify({ User: user, Name: name , Extension : row.Extension, Date: date, URL:url, Category:category, Price:price, Contact: contact, Info: info, Levels: levels, Model: row.Model}));
       //res.write("<h1>test</h1>");
       //console.log(JSON.stringify({ Name: row.Name }));
     }, function(){

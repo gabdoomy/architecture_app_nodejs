@@ -18,7 +18,7 @@
 				+"<div class=\"panel-body\">"
 					+"<div>"
 						+"<div id =\"imageinsert"+i+"\">"
-							+"<img id=\"zoom_"+i+"\" class= \"zoom project_info\" src=\""+im+i+".png\" data-zoom-image=\""+im+i+".png\"></img>"
+							+"<img id=\"zoom_"+i+"\" class= \"zoom project_info\" src=\""+im+i+d_name.Extension+"\" data-zoom-image=\""+im+i+d_name.Extension+"\"></img>"
 						+"</div>"
 						+"<div id=\"info_"+i+"\" class = \"project_info\"></div>"
 					+"</div>"

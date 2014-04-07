@@ -310,6 +310,48 @@ h1 {
   margin-top: 5%;
 }
 
+.text-form {
+  float:left; 
+  display:block; 
+  font-size:13px;
+  line-height:24px;
+  width:20%; 
+  color:#333;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+#contact-form2 {
+  display:block;
+  width:95%;
+  margin-left: 10px;
+}
+  #contact-form2 label {
+    display:block; 
+    height:25px; 
+    overflow:hidden;
+  }
+ 
+  #contact-form2 textarea {
+    float:left;
+    height:300px; 
+    width:90%; 
+    font-size:12px; 
+    line-height:1.25em;
+    color:#333;
+    padding:3px 10px; 
+    margin:0; 
+    font-family:Arial, Helvetica, sans-serif; 
+    border:none; 
+    background:#fff;
+    overflow:auto;
+    outline:none;
+  }
+  #contact-form2 input {
+    width:75%; 
+    font-size:12px; 
+    line-height:1.25em;}
+
+
 /*.zoom{
   width: 50%;
   height: 50%;

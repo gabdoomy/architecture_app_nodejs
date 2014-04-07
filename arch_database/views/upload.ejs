@@ -61,20 +61,21 @@
 
 			<div class="box">
 				<h1>Project Uploader</h1>
-				<form action="/upload_file" method="POST" enctype="multipart/form-data">
-				Project name*: <input type="text" name="project_name"><br>
-				Price: <input type="text" name="project_price"><br>
-				Contact: <input type="text" name="contact"><br>
-				Info: <input type="text" name="project_info"><br>
-				Levels: <input type="text" name="project_levels"><br>
-				Category: <select name="project_category">
+				<form action="/upload_file" id="contact-form2" method="POST" enctype="multipart/form-data">
+        
+				<label><span class="text-form">Project name*: </span><input type="text" name="project_name"></label>
+				<label><span class="text-form">Price: </span><input type="text" name="project_price"></label>
+				<label><span class="text-form">Contact: </span><input type="text" name="contact"></label>
+				<label><span class="text-form">Info: </span><input type="text" name="project_info"></label>
+				<label><span class="text-form">Levels: </span><input type="text" name="project_levels"></label>
+				<label><span class="text-form">Category: </span><select name="project_category">
 				<option value="1">Commercial</option>
 				<option value="2">Residential</option>
 				<option value="3">Educational</option>
-				</select></br>
-				Blueprint*: <input class="styled-button-11" type="file" name="file" /></br>
+				</select></label>
+				Blueprint*: <input class="styled-button-11" type="file" name="file" /><br/>
 				3D Model: <input class="styled-button-11" type="file" name="model" />
-				<input type="submit" class="styled-button-11" value="Send the project!" /></br>
+				<input type="submit" class="styled-button-11" value="Send the project!" /><br/>
 				*required
 				<input style="display:none" type="text" name="dest" value="shared" />
 				</form>
